@@ -3,8 +3,9 @@ const serverRoutes = require("./routes");
 const request = require("supertest");
 
 const app = express();
-app.use("/countries", serverRoutes);
 
+let firstCountry;
+app.use("/countries", serverRoutes);
 describe('testing-server-routes', () => {
     test('GET /countries - success', async () => {
       const { body } = await request(app).get('/countries');
@@ -30,6 +31,12 @@ describe('testing-server-routes', () => {
           "capital": "Rome"
         }
       ]);
+      firstCountry = body[0];
     });
+
+    test('GET /countries/England - success', async () => {
+      const { body } = await request(app).get(`/countries/${firstCountry.name}`);
+      expect(body).toEqual(firstCountry)
+    })
 });
   
