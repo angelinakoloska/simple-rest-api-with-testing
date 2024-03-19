@@ -100,3 +100,49 @@ describe("testing-server-routes", () => {
     expect(body).toEqual(firstCountry);
   });
 });
+
+test("PUT /countries/Poland - success", async () => {
+  let countryObj = {
+    short: "PL",
+    name: "Poland",
+    capital: "Cracow"
+  };
+
+  const response = await request(app)
+    .put("/countries/Poland")
+    .send(countryObj);
+
+  expect(response.body).toEqual({
+    status: "success",
+    countryInfo: {
+      short: "PL",
+      name: "Poland",
+      capital: "Cracow"
+    },
+  });
+
+  expect(save).toHaveBeenCalledWith([
+    {
+      short: "EN",
+      name: "England",
+      capital: "London"
+    },
+    {
+      short: "DE",
+      name: "Germany",
+      capital: "Berlin"
+    },
+    {
+      short: "PL",
+      name: "Poland",
+      capital: "Cracow"
+    },
+    {
+      code: "IT",
+      name: "Italy",
+      capital: "Rome"
+    }
+  ]);
+
+  expect(response.statusCode).toEqual(200);
+});
