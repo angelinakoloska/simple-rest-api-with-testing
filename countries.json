@@ -1,0 +1,23 @@
+[
+    {
+      "short": "EN",
+      "name": "England",
+      "capital": "London"
+    },
+    {
+      "short": "DE",
+      "name": "Germany",
+      "capital": "Berlin"
+    },
+    {
+      "short": "PL",
+      "name": "Poland",
+      "capital": "Warsaw"
+    },
+    {
+      "short": "IT",
+      "name": "Italy",
+      "capital": "Rome"
+    }
+]
+  
